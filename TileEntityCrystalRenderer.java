@@ -35,9 +35,14 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
 
             for (int j = 0; j < list.size(); ++j)
             {
+            	GlStateManager.rotate(60.0f, -1.0f, 0.0f, 0.0f);
+                GlStateManager.pushMatrix();
             	TileEntityCrystal.BeamSegment TileEntityCrystal$beamsegment = (TileEntityCrystal.BeamSegment)list.get(j);
                 int k = i + TileEntityCrystal$beamsegment.getHeight();
+                GlStateManager.popMatrix();
+
                 this.bindTexture(beaconBeam);
+                
                 GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_S, 10497.0F);
                 GL11.glTexParameterf(GL11.GL_TEXTURE_2D, GL11.GL_TEXTURE_WRAP_T, 10497.0F);
                 GlStateManager.disableLighting();
@@ -53,11 +58,11 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
                 float f1 = TileEntityCrystal$beamsegment.getColors()[0];
                 float f2 = TileEntityCrystal$beamsegment.getColors()[1];
                 float f3 = TileEntityCrystal$beamsegment.getColors()[2];
-                f1 = 1.0f;
-                f2 = 0.0f;
-                f3 = 1.0f;
+                f1 = (255.0f) / (255.0f / 8.0f);
+                f2 = (255.0f) / (255.0f / 8.0f);
+                f3 = (255.0f) / (255.0f / 8.0f);
                 
-                double laserSize = 0.425D;
+                double laserSize = /*0.425D*/ 0.2D;
                 
                 double d2 = d0 * 0.025D * -1.5D;
                 double d3 = 0.2D;
@@ -77,6 +82,9 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
                 double d13 = 1.0D;
                 double d14 = -1.0D + d1;
                 double d15 = (double)((float)TileEntityCrystal$beamsegment.getHeight() * f) * 2.5D + d14;
+
+                
+                
                 worldrenderer.begin(7, DefaultVertexFormats.POSITION_TEX_COLOR);
                 worldrenderer.pos(x + d4, y + (double)k, z + d5).tex(1.0D, d15).color(f1, f2, f3, 1.0F).endVertex();
                 worldrenderer.pos(x + d4, y + (double)i, z + d5).tex(1.0D, d14).color(f1, f2, f3, 1.0F).endVertex();
@@ -95,6 +103,8 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
                 worldrenderer.pos(x + d4, y + (double)i, z + d5).tex(0.0D, d14).color(f1, f2, f3, 1.0F).endVertex();
                 worldrenderer.pos(x + d4, y + (double)k, z + d5).tex(0.0D, d15).color(f1, f2, f3, 1.0F).endVertex();
                 tessellator.draw();
+                
+                /*
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
                 GlStateManager.depthMask(false);
@@ -127,12 +137,15 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
                 worldrenderer.pos(x + 0.2D, y + (double)i, z + 0.8D).tex(1.0D, d12).color(f1, f2, f3, 0.125F).endVertex();
                 worldrenderer.pos(x + 0.2D, y + (double)i, z + 0.2D).tex(0.0D, d12).color(f1, f2, f3, 0.125F).endVertex();
                 worldrenderer.pos(x + 0.2D, y + (double)k, z + 0.2D).tex(0.0D, d13).color(f1, f2, f3, 0.125F).endVertex();
-            
+                
+
                 tessellator.draw();
                 GlStateManager.enableLighting();
                 GlStateManager.enableTexture2D();
                 GlStateManager.depthMask(true);
+                */
                 i = k;
+
             }
 
             GlStateManager.enableFog();
