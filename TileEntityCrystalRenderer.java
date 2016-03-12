@@ -104,7 +104,7 @@ public class TileEntityCrystalRenderer extends TileEntitySpecialRenderer<TileEnt
                 worldrenderer.pos(x + d4, y + (double)k, z + d5).tex(0.0D, d15).color(f1, f2, f3, 1.0F).endVertex();
                 tessellator.draw();
                 
-                /*
+                /* // Secondary Beam (Useless for now)
                 GlStateManager.enableBlend();
                 GlStateManager.tryBlendFuncSeparate(770, 771, 1, 0);
                 GlStateManager.depthMask(false);
